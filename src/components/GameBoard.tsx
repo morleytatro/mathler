@@ -56,10 +56,11 @@ interface Options {
   answer: number;
   map: Record<string, number[]>;
   reversed?: (string | number)[];
+  onGameOver: (won: boolean) => void;
 }
 
 export function GameBoard(options: Options) {
-  const { answer, map, reversed } = options;
+  const { answer, map, onGameOver, reversed } = options;
   const [isGameOver, setIsGameOver] = useState(false);
   const [isGameWon, setIsGameWon] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -115,14 +116,16 @@ export function GameBoard(options: Options) {
       if (mapToBoard(map).every((tile, i) => tile === updatedTiles[i])) {
         setIsGameOver(true);
         setIsGameWon(true);
+        onGameOver(true)
         toast.success('You found the hidden calculation!');
       } else if (currentIndex === 5) {
         setIsGameOver(true);
+        onGameOver(false);
       } else {
         setCurrentIndex((prev) => prev + 1);
       }
     }
-  }, [answer, currentGame, reversed, currentIndex, map]);
+  }, [answer, currentGame, reversed, currentIndex, map, onGameOver]);
 
   useEffect(() => {
     function onKeyUp(event: KeyboardEvent) {

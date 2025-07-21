@@ -1,5 +1,5 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom';
-import { useIsLoggedIn, useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
 import { Header } from './components/Header';
 import { Profile } from './pages/profile';
 import { Game } from './pages';
@@ -9,9 +9,6 @@ import { History } from './pages/history';
 function AuthWrapper() {
     const isLoggedIn = useIsLoggedIn();
     const { pathname } = useLocation();
-    const { user } = useDynamicContext();
-
-    console.log(user?.metadata);
 
     return !isLoggedIn ? <Navigate to={`/login?redirectPath=${pathname}`} /> : <Outlet />;
 }

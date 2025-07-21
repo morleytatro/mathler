@@ -1,4 +1,4 @@
-function getRandInt(max?: number) {
+export function getRandInt(max?: number) {
   return Math.floor(Math.random() * (max ?? 10));
 }
 
@@ -177,7 +177,3 @@ export function mapToBoard(map: Record<string, number[]>) {
   });
   return board;
 }
-
-Array.from({ length: 20 }, (_, i) => i).forEach(() => {
-  console.log(createRandomEquation());
-});

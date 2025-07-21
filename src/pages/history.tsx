@@ -1,14 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
-
-interface HistoryEntry {
-  date: string;
-  won?: boolean;
-}
-
-interface Metadata {
-  history: HistoryEntry[];
-}
+import type { Metadata } from '../types';
 
 export function History() {
   const { user } = useDynamicContext();
@@ -44,7 +36,7 @@ export function History() {
                     <td className="py-2">{entry.date}</td>
                     <td className="py-2">{wonColumn}</td>
                     <td className="py-2">
-                      {entry.date === today && (
+                      {entry.date === today && wonColumn === 'In Progress' && (
                         <Link
                           to="/"
                           className="border-b border-green-500 text-green-500 hover:opacity-80"
