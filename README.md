@@ -1,21 +1,7 @@
 # Morley's Mathler
 
-## Planning
+## Known Limitations and Todos
 
-- get local working first
-- hook up a light backend with Dynamic
-- work out some tests
-- deploy
-- backend? likely
-- db? get everything working locally first
-- tests: some Playwright, some Vitest
-- deployment: maybe Turso, Cloudflare Pages, and Cloudflare workers
-
-## Remaining
-
-- calculate total func: done
-- prevent submission if total not matching: done
-- get persistence into and out of metadata (needs serialization/deserialization)
-- deployment
-- testing: still need unit for useGame and Playwright for GameBoard component?
-- creating boards?
+- state syncing is simplified (at the start of playing and at the end) due to the limited nature of the metadata object and with the understanding that a true BE would allow more granular updates on each tile change
+- I had plans to write some basic Playwright tests for the GameBoard component; this is todo
+- I made some headway with generating random boards; this needs some tweaking to properly handle division scenarios
